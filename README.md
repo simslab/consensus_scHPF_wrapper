@@ -20,7 +20,7 @@ The helper scripts described below are designed to operate on loom files and can
 
 ```
 scHPF prep -i TRAINING_LOOM --whitelist WHITELIST -m 0.01 -o OUTPUT_DIRECTORY -p TRAINING_OUTPUT_PREFIX
-scHPF prep-like -i TEST_LOOM -g OUTPUT_DIRECTORY/TRAINING_OUTPUT_PREFIX.genes.txt -p TEST_OUTPUT_PREFIX -o OUTPUT_DIRECTORY
+scHPF prep-like -i TEST_LOOM -r OUTPUT_DIRECTORY/TRAINING_OUTPUT_PREFIX.genes.txt -p TEST_OUTPUT_PREFIX -o OUTPUT_DIRECTORY
 ```
 
 Once the scHPF training and test input have been generated, the consensus scHFP wrapper can be used to generate multiple scHPF models, cluster them, and produce a consensus scHPF model.  For example:
