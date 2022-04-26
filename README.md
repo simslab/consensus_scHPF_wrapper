@@ -15,6 +15,19 @@ This pipeline has the following dependencies (a few of which are somewhat inflex
 - igraph
 - scHPF (https://github.com/simslab/scHPF)
 
+## Consensus scHPF
+The helper scripts described below are designed to operate on loom files and can be used to generate training and test data sets in loom format (with various types of cellular sub-sampling and molecular downsampling) for input to scHPF.  The scHPF prep and prep-like commands can be used to generate filtered, sparse matrices for scHPF.  For example (see scHPF documentation for more details on these commands):
+
+```
+scHPF prep -i TRAINING_LOOM --whitelist WHITELIST -m 0.01 -o OUTPUT_DIRECTORY -p TRAINING_OUTPUT_PREFIX
+scHPF prep-like -i TEST_LOOM -g OUTPUT_DIRECTORY/TRAINING_OUTPUT_PREFIX.genes.txt -p TEST_OUTPUT_PREFIX -o OUTPUT_DIRECTORY
+```
+
+Once the scHPF training and test input have been generated, the consensus scHFP wrapper can be used to generate multiple scHPF models, cluster them, and produce a consensus scHPF model.  For example:
+```
+python scHPF_consensus.py --infile-train OUTPUT_DIRECTORY/TRAINING_OUTPUT_PREFIX.filtered.mtx --infile-test OUTPUT_DIRECTORY/TEST_OUTPUT_PREFIX.filtered.mtx -o OUTPUT_DIRECTORY --prefix CONSENSUS_OUTPUT_PREFIX --gene-infile OUTPUT_DIRECTORY/TRAINING_OUTPUT_PREFIX.genes.txt -k LIST_OF_K_VALUES -t NUMBER_OF_TRIALS -n NUMBER_OF_TOP_MODELS_TO_CLUSTER -m MIN_NUMBER_OF_MODELS_PER_CLUSTER -j MAX_NUMBER_OF_MODELS_TO_RUN_IN_PARALLEL
+```
+
 ## Helper Scripts
 There are a few helper scripts for sub-sampling (equal representation of cells across specimens, subjects, batches, etc) and down-sampling (equal average counts/cell across specimens, subjects, batches, etc) and gerating training and test count matrices.
 
