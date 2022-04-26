@@ -21,7 +21,7 @@ parser = parse_user_input()
 ui = parser.parse_args()
 
 with loompy.new(ui.output_loom) as dsout:  # Create a new, empty, loom file
-	with loompy.connect(ui.input_loom) as ds:
+	with loompy.connect(ui.input_loom,validate=False) as ds:
 		if ui.col_attr:
 			cells = np.where(np.isin(ds.ca[ui.col_attr],ui.col_val))[0]
 		else:
