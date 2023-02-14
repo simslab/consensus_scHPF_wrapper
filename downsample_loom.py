@@ -42,7 +42,7 @@ ui = parser.parse_args()
 data=loompy.connect(ui.loom,validate=False)
 avec = data.ca[ui.attribute]
 
-matrix = data[:,:]
+matrix = data[:,:].astype(int)
 cts = sum(matrix)
 mncts = [np.mean(cts[avec==a]) for a in set(avec)]
 if not ui.n_molecules: # if user doesn't specify the number of UMI counts for downsampling, take the submatrix with minimum avg counts
@@ -64,9 +64,9 @@ submatrix = None
 for i,a in enumerate(set(avec)): # generate merged, downsampled count matrix from downsampled submatrices in temporary files
     outfile = 'tmp_'+str(i)+'.matrix.txt'
     if i==0:
-        matrix = np.loadtxt(outfile,delimiter='\t')
+        matrix = np.loadtxt(outfile,delimiter='\t',dtype='int')
     else:
-        matrix = np.concatenate((matrix,np.loadtxt(outfile,delimiter='\t')),axis=1)
+        matrix = np.concatenate((matrix,np.loadtxt(outfile,delimiter='\t',dtype='int')),axis=1)
 
 # generate downsampled loom
 rows = {attr:data.ra[attr] for attr in data.ra.keys()}
