@@ -29,13 +29,13 @@ python scHPF_consensus.py --infile-train OUTPUT_DIRECTORY/TRAINING_OUTPUT_PREFIX
 ```
 
 ## Helper Scripts
-There are a few helper scripts for sub-sampling (equal representation of cells across specimens, subjects, batches, etc) and down-sampling (equal average counts/cell across specimens, subjects, batches, etc) and gerating training and test count matrices.
+There are a few helper scripts for sub-sampling (equal representation of cells across specimens, subjects, batches, etc) and down-sampling (equal average counts/cell across specimens, subjects, batches, etc) and generating training and test count matrices.
 
 For sub-sampling cells:
 ```
 python subsample_merged_loom.py -i INPUT_LOOM -o OUTPUT_LOOM --subsample-col-attr COL_ATTR_FOR_SUBSETTING
 ```
-The above will take sub-sample all of the subtypes defined by a column attribute to the same number of cells as the subtype with the fewest cells. One can sub-sample to a fixed minimum number of cells using the --number-of-cells option. One can also sub-sample a subpopulation of cells in the loom by filtering on a different column attribute using --col-attr and --col-val to identify the column attribute and the values for that attribute that you want to keep.  For example:
+The above will sub-sample all of the subtypes defined by a column attribute to the same number of cells as the subtype with the fewest cells. One can sub-sample to a fixed minimum number of cells using the --number-of-cells option. One can also sub-sample a subpopulation of cells in the loom by filtering on a different column attribute using --col-attr and --col-val to identify the column attribute and the values for that attribute that you want to keep.  For example:
 ```
 python subsample_merged_loom.py -i INPUT_LOOM -o OUTPUT_LOOM --subsample-col-attr COL_ATTR_FOR_SUBSETTING --col-attr COL_ATTR_FOR_MASKING --col-val MASK_VALUE_1 MASK_VALUE_2
 ```
