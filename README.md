@@ -39,7 +39,7 @@ The above will take sub-sample all of the subtypes defined by a column attribute
 ```
 python subsample_merged_loom.py -i INPUT_LOOM -o OUTPUT_LOOM --subsample-col-attr COL_ATTR_FOR_SUBSETTING --col-attr COL_ATTR_FOR_MASKING --col-val MASK_VALUE_1 MASK_VALUE_2
 ```
-This will take all of the cells with COL_ATTR_FOR_MASKING equal to either MAKSK_VALUE_1 or MASK_VALUE_2 and sub-sample those using subsets defined by COL_ATTR_FOR_SUBSETTING.
+This will take all of the cells with COL_ATTR_FOR_MASKING equal to either MASK_VALUE_1 or MASK_VALUE_2 and sub-sample those using subsets defined by COL_ATTR_FOR_SUBSETTING.
 
 For down-sampling molecules:
 ```
